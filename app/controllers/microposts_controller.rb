@@ -10,6 +10,12 @@ class MicropostsController < ApplicationController
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    @micropost = Micropost.find_by(id: params[:id])
+    if @micropost.nil?
+      @microposts = Micropost.all
+      flash.now[:alert] = "your micropost was not found"
+      render "index"
+    end
   end
 
   # GET /microposts/new
@@ -69,6 +75,6 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :user_id)
+      params.require(:micropost).permit(:title, :content, :user_id)
     end
 end

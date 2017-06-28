@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+    <div class="field">
+    <%= form.label :title %>
+    <%= form.text_area :title, id: :micropost_title %>
+  </div>
+
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content, id: :micropost_content %>
